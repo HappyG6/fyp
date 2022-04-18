@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate PDF form</title>
+
+    <link href="{% static 'theme/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+    body {
+        background-color: rgb(223, 242, 250);
+        color: #444;
+        font-family: "Open Sans";
+    }
+    .top{
+        text-align: center;
+        padding: 35px;
+        border-bottom: 2px solid gray;
+        margin-bottom: 20px;
+    }
+    .row{
+        margin-bottom: 30px;
+    }
+    .top h1{
+        font-size: 40px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-right: 50px;
+
+    }
+    .top img{
+        margin-left:10px;
+        padding-bottom: 20px;
+    }
+    .form-group{
+        margin-bottom: 35px;
+    }
+    </style>
+</head>
+<body>
+
+<!-- Image and text -->
+<div class="container">
+
+    <div class="top">
+        <a href="{% url 'kblock:index' %}"><img src="{% static 'theme/img/logo4.0.png' %}" width="100" height="90" class="float-left" alt=""></a>
+        <h1>Generate Contract</h1>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <form action="" method="post">
+                    <div class="form-group" >
+                        <label for="">Name</label>
+                        <select class="form-control" name="name" required>
+                            <option>Choose User</option>
+                            {% for teacher in teachers %}    
+                            <option>{{teacher}}</option>
+                            {% endfor%} 
+                        </select>
+                        <!-- <input type="text" class="form-control" name="name" placeholder="教師名字" required> -->
+                    </div>
+
+                    <div class="form-group">
+                    <label>Role</label>
+                    <input type="text" class="form-control" name="role" placeholder="Professor" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Commencement Date</label><br>
+                        <input type="date" name="datestart" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ending Date</label><br>
+                        <input type="date" name="dateend" required >
+                    </div>
+
+                    {% csrf_token %}
+        
+                    <button type="submit" class="btn btn-primary" >Submit</button>
+                </form>
+        </div>
+        <div class="col-lg-2"></div>
+        <br><br>
+    </div>
+</div>
+</body>
+</html>

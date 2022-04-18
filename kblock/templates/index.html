@@ -1,0 +1,583 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KBlock</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+
+
+  <!-- Libraries CSS Files --> 
+  <link rel="stylesheet" href="{% static 'theme/lib/font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'theme/lib/animate/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'theme/lib/ionicons/css/ionicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'theme/lib/owlcarousel/assets/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'theme/lib/lightbox/css/lightbox.min.css' %}">
+  <link rel="stylesheet" href="{% static 'theme/lib/bootstrap/css/bootstrap.min.css' %}">
+
+  <!-- Main Stylesheet File -->
+  <link rel="stylesheet" href="{% static 'theme/css/style.css' %}">
+</head>
+
+<body>
+  <!--==========================
+  Header
+  ============================-->
+  <header id="header">
+
+
+    <div class="container">
+
+      <div class="logo float-left">
+        <a href="#intro" class="scrollto"><img src="{% static 'theme/img/logo4.0.png' %}" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="main-nav float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="#intro">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#footer">Contact Us</a></li>
+          <li><a href="{% url 'kblock:account' %}">Account</a></li>
+          {% if request.user.is_superuser %}
+          <li><a href="{% url 'kblock:createpdf' %}">Create</a></li>
+          <li><a href="{% url 'kblock:checkhash' %}">Checksum</a></li>
+          {% else %}
+          <li><a href="{% url 'kblock:checkhash' %}">Checksum</a></li>
+          {% endif %}
+
+          <li>    
+                <div class="social-links">
+                  {% if user.is_authenticated %}
+                  <a href="{% url 'kblock:logout' %}"> {{ user.username |title }} - Logout </a>
+                  {% else %}
+                  <a href="{% url 'kblock:login' %}"><i class="fa fa-user"></i>  Login </a>
+                  {% endif %}
+                </div>
+      </li>
+        </ul>
+      </nav><!-- .main-nav -->
+      
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+      <div class="row justify-content-center align-self-center">
+        <div class="col-md-12 intro-info">
+          <h2>義守<span class="isu">    ISU</span><br><span>教師聘書<br><span class="sr">區塊鏈認證</span></span></h2>
+          <div>
+            <a href="{% url 'kblock:common' %}" class="btn-get-started scrollto">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- #intro -->
+
+  <!--==========================
+    Intro Section
+
+  <section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+      <div class="row justify-content-center align-self-center">
+        <div class="col-md-6 intro-info order-md-first order-last">
+          <h2>義守 ISU<br>教師聘書 <br><span>區塊鏈認證</span></h2>
+          <div>
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+          </div>
+        </div>
+  
+        <div class="col-md-6 intro-img order-md-last order-first">
+          <img src="img/intro-img.svg" alt="" class="img-fluid">
+        </div>
+      </div>
+
+    </div>
+  </section>
+  ============================-->
+
+  <main id="main">
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-5 col-md-6">
+            <div class="about-img">
+              <img src="{% static 'theme/img/test01.svg' %}" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-7 col-md-6">
+            <div class="about-content">
+              <h2>About Us</h2>
+              <h3>What is blockchain technology?</h3>
+              <p>Blockchain has a great reputation in the so-called digital currency environment of Bitcoin. Despite the Bitcoin hype, it is not the only useful application of blockchain technology. </p>
+              <p>However, to understand other applications, you must understand blockchain.</p>
+              <p>Simply put, it is a decentralized database that maintains a growing list or chain of data transaction records. Every part of this decentralized system has a copy of the chain of records; no "official" copy exists. In this way, the information is protected from alternating and rewriting.</p>
+
+              <ul>
+                <li><i class="ion-android-checkmark-circle"></i> Faster transaction settlements</li>
+                <li><i class="ion-android-checkmark-circle"></i> Blockchain are time stamped</li>
+                <li><i class="ion-android-checkmark-circle"></i> The transactions that take place are transparent. The individuals who are provided authority can view the transaction.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- #about -->
+
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services" class="section-bg">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>What We Can Provide</h3>
+        </header>
+
+        <div class="row">
+<i class="fas fa-shield-alt"></i>
+          <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon" style="background: #eef9fc;"><i class="fa fa-shield" style="color:rgba(31, 94, 230, 0.932);"></i></div>
+              <h4 class="title"><a >Enhanced security</a></h4>
+              <p class="description">By creating a record that cannot be altered and is encrypted end-to-end, blockchain helps prevent fraud and unauthorized activity.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon" style="background: #fff0da;"><i class="ion-ios-shuffle" style="color: #e98e06;"></i></div> 
+              <h4 class="title"><a >Increased efficiency</a></h4>
+              <p class="description">Traditional paper processes are time-consuming. By streamlining these processes with blockchain, transactions can be completed faster.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
+              <h4 class="title"><a>Automation</a></h4>
+              <p class="description">Transactions can even be automated with “smart contracts”. Smart contracts reduce reliance on third parties to verify that terms of a contract have been met.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon" style="background: #eafde7;"><i class="ion-network" style="color:#41cf2e;"></i></div>
+              <h4 class="title"><a>Instant traceability</a></h4>
+              <p class="description">Blockchain creates an audit trail that documents the provenance of an asset at every step on its journey. </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon" style="background: #e1eeff;"><i class="ion-ios-world-outline" style="color: #2282ff;"></i></div>
+              <h4 class="title"><a>Greater transparency</a></h4>
+              <p class="description">Blockchain uses distributed ledger technology, transactions and data are recorded identically in multiple locations.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon" style="background: #ecebff;"><i class="ion-ios-clock-outline" style="color: #8660fe;"></i></div>
+              <h4 class="title"><a>Increased Convenience</a></h4>
+              <p class="description">Verifying and storing certificate here prevents losing it in the future and also easily to acquire whenever needed.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- #call-to-action -->
+
+    <!--==========================
+      Features Section
+    ============================-->
+    <!-- <section id="features">
+      <div class="container text-center">
+          <div class="col-lg-12 wow fadeInUp">
+            <img src="{% static 'theme/img/diag.png' %}" class="img-fluid" alt="">
+          </div>
+      </div>
+    </section> -->
+    <!-- #about -->
+
+    <!-- #testimonials -->
+
+    <!--==========================
+      Team Section
+    ============================-->
+    <!-- <section id="team" class="section-bg">
+      <div class="container">
+        <div class="section-header">
+          <h3>Team</h3>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp">
+            <div class="member">
+              <img src="{% static 'theme/img/team-1.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Louis Leong</h4>
+                  <span>Front-end Designer</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="member">
+              <img src="{% static 'theme/img/team-2.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Larry Tseng</h4>
+                  <span>Database Engineer</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="member">
+              <img src="{% static 'theme/img/team-3.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Howard Wang</h4>
+                  <span>Database Engineer</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="{% static 'theme/img/team-4.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>John Cheng</h4>
+                  <span>Designer</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div> -->
+   
+    <!--==========================
+      Pricing Section
+    ============================-->
+    <!-- <section id="pricing" class="wow fadeInUp section-bg">
+
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Pricing</h3>
+          <p>Better functions with different offers for monthly subscription.</p>
+        </header>
+
+        <div class="row flex-items-xs-middle flex-items-xs-center">
+       -->
+          <!-- Basic Plan  -->
+          <!-- <div class="col-xs-12 col-lg-4">
+            <div class="card">
+              <div class="card-header">
+                <h3><span class="currency">$</span>19<span class="period">/month</span></h3>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title"> 
+                  Basic Plan
+                </h4>
+                <ul class="list-group">
+                  <li class="list-group-item">1 additional option of verification</li>
+                  <li class="list-group-item">20% increase of storage</li>
+                  <li class="list-group-item">24/7 Support System</li>
+                </ul>
+                <a href="#" class="btn">Choose Plan</a>
+              </div>
+            </div>
+          </div>
+       -->
+          <!-- Regular Plan  -->
+          <!-- <div class="col-xs-12 col-lg-4">
+            <div class="card">
+              <div class="card-header">
+                <h3><span class="currency">$</span>29<span class="period">/month</span></h3>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title"> 
+                  Regular Plan
+                </h4>
+                <ul class="list-group">
+                  <li class="list-group-item">2 additional options of verification</li>
+                  <li class="list-group-item">40% increase of storage</li>
+                  <li class="list-group-item">24/7 Support System</li>
+                </ul>
+                <a href="#" class="btn">Choose Plan</a>
+              </div>
+            </div>
+          </div>
+       -->
+          <!-- Premium Plan  -->
+          <!-- <div class="col-xs-12 col-lg-4">
+            <div class="card">
+              <div class="card-header">
+                <h3><span class="currency">$</span>39<span class="period">/month</span></h3>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title"> 
+                  Premium Plan
+                </h4>
+                <ul class="list-group">
+                  <li class="list-group-item">3 additional option of verification</li>
+                  <li class="list-group-item">60% increase of storage</li>
+                  <li class="list-group-item">24/7 Support System</li>
+                </ul>
+                <a href="#" class="btn">Choose Plan</a>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+    </section> -->
+    <!-- #pricing -->
+
+    <!--==========================
+      Frequently Asked Questions Section
+    ============================-->
+    <section id="faq">
+      <div class="container">
+        <header class="section-header">
+          <h3>Frequently Asked Questions</h3>
+          <p>Feel free to contact us for more enquires.</p>
+        </header>
+
+        <ul id="faq-list" class="wow fadeInUp">
+          <li>
+            <a data-toggle="collapse" class="collapsed" href="#faq1">How blockchain works?<i class="ion-android-remove"></i></a>
+            <div id="faq1" class="collapse" data-parent="#faq-list">
+              <p>
+                As each transaction occurs, it is recorded as a “block” of data. Each block is connected to the ones before and after it. Transactions are blocked together in an irreversible chain: a blockchain.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq2" class="collapsed">What is Blockchain security?<i class="ion-android-remove"></i></a>
+            <div id="faq2" class="collapse" data-parent="#faq-list">
+              <p>
+                Blockchain security differs by blockchain types. Public blockchains are public, and anyone can join them and validate transactions.Public blockchains are public, and anyone can join them and validate transactions. Private blockchains are restricted and usually limited to business networks. A single entity, or consortium, controls membership. Permissionless blockchains have no restrictions on processors.  Permissioned blockchains are limited to a select set of users who are granted identities using certificates.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq3" class="collapsed">How does KBlock works?<i class="ion-android-remove"></i></a>
+            <div id="faq3" class="collapse" data-parent="#faq-list">
+              <p>
+                After 3rd party submit a certificate, we will upload it into a blockchain to ensure its authenticity in the future use. The link will also be shown in your own account.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq4" class="collapsed">Where to download the verified certificate?<i class="ion-android-remove"></i></a>
+            <div id="faq4" class="collapse" data-parent="#faq-list">
+              <p>
+                Go to account -> Click upload then scroll to the bottom. Verified certificate can be found below.
+              </p>
+            </div>
+          </li>
+
+
+        </ul>
+
+      </div>
+    </section>
+    <!-- #faq -->
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-6">
+
+            <div class="row">
+
+                <div class="col-sm-6">
+
+                  <div class="footer-info">
+                    <h3>KBlock</h3>
+                    <p>We live in an environment where mobile data is threatened. Kblock is just the first step to provide you with a complete new generation of data protection. Learn how KBlock develops its methods of protecting data in an increasingly complex threat world.</p>
+                  </div>
+
+                  <div class="footer-newsletter">
+                    <h4>Our Newsletter</h4>
+                    <p>Subscribe to get the latast information of KBlock !</p>
+                    <form action="" method="post">
+                      <input type="email" name="email"><input type="submit"  value="Subscribe">
+                    </form>
+                  </div>
+
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                      <li><a href="#">Home</a></li>
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <p>
+                      Yida Second Road <br>
+                      Kaohsiung, 23412<br>
+                      Taiwan <br>
+                      <strong>Email:</strong> kblock@gmail.com<br>
+                    </p>
+                  </div>
+
+                  <div class="social-links">
+                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                  </div>
+
+                </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="form">
+              
+              <h4>Send us a message</h4>
+              <form action="" method="GET">
+              {% csrf_token %}
+                <div class="form-group">
+                  {{form.name}}
+                </div>
+                <div class="form-group">
+                  {{form.email}}
+                </div>
+                <div class="form-group">
+                  {{form.subject}}
+                </div>
+                <div class="form-group">
+                  {{form.message}}
+                </div>
+
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+
+                  <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+
+            </div>
+          </div>    
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- <div class="copyright">
+        &copy; Copyright <strong>KBlock</strong>. All Rights Reserved
+      </div> -->
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">KBlock</a>
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader 
+  <div id="preloader"></div>
+  -->
+  <!-- JavaScript Libraries 
+  <link src="lib/jquery/jquery.min.js"></link>
+  <link src="lib/jquery/jquery-migrate.min.js"></link>
+  <link src="lib/bootstrap/js/bootstrap.bundle.min.js"></link>
+  <link src="lib/easing/easing.min.js"></link>
+  <link src="lib/mobile-nav/mobile-nav.js"></link>
+  <link src="lib/wow/wow.min.js"></link>
+  <link src="lib/waypoints/waypoints.min.js"></link>
+  <link src="lib/counterup/counterup.min.js"></link>
+  <link src="lib/owlcarousel/owl.carousel.min.js"></link>
+  <link src="lib/isotope/isotope.pkgd.min.js"></link>
+  <link src="lib/lightbox/js/lightbox.min.js"></link>
+  -->
+  <script src="{% static 'theme/lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'theme/lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'theme/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'theme/lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'theme/lib/mobile-nav/mobile-nav.js' %}"></script>
+  <script src="{% static 'theme/lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'theme/lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'theme/lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'theme/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'theme/lib/isotope/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'theme/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'theme/contactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'theme/lib/jquery/main.js' %}"></script>
+
+
+</body>
+</html>

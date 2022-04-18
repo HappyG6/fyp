@@ -1,0 +1,146 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account</title>
+    <link href="{% static 'theme/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'theme/lib/font-awesome/css/font-awesome.min.css' %}">
+
+    <style>
+        body{
+            background: linear-gradient(to right,#e6ebf0 0%,#d4e0ec 25%,#b0d3ee 60%, #8ac2f0);
+            height: 100%;
+            color: #444;
+            font-family: "Open Sans";
+        }
+        .row {
+            display: flex;
+            box-shadow: 0 5px 20px 0 rgba(148, 174, 247, 0.822);
+            background-color: rgba(255, 255, 255, 0.719);
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+
+        }
+        .top{
+            text-align: center;
+            margin: 80px 0;
+            border-bottom: 5px double #444;
+        }
+        .top span{
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .top img{
+            margin-left:10px;
+            padding-bottom: 20px;
+        }
+        .box {
+            height: 280px;
+            text-align: center;
+        }
+        .box i{
+            margin-top: 25px;
+            padding: 20px 0px;
+            font-size: 100px;
+            color: rgba(0, 0, 0, 0.527);
+        }
+        .box i:hover{
+            color: rgb(0, 0, 0);
+        }
+        .box h3{
+            font-size: 28px;
+        }
+        .box a{
+            font-size: 20px;
+        }
+        .error{
+            text-align: center;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 5px 20px 0 rgba(148, 174, 247, 0.822);
+            color: black;
+        }
+        .error h3{
+            font-size: 40px;
+        }
+        .hash{
+            font-size: 15px;
+            margin-left: 50px;
+            width: 160px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            word-break:break-all;
+        }
+        .hash:hover{
+            background-color: white;
+            white-space: normal; 
+            overflow: visible;
+            position: absolute;
+        }
+
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        
+        <div class="top">
+            <a href="{% url 'kblock:index' %}"> <img src="{% static 'theme/img/logo4.0.png' %}" width="110" height="100" class="float-left" alt="logo"></a>
+            <span>{{ user.username |title }} 's Documents</span>
+        </div>
+
+        {% if data %}
+        <div class="row">    
+            {% for certif,file in certifs %}    
+            <div class="col-sm-3 box">
+                <a  class="icon" href= "{{certif.pdf.url}}"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                <br>
+                <div class="hash"><p>{{certif.hash}}</p></div>
+                <h3>{{file.role}}</h3>
+                <a href={{certif.web}}>Iota Link</a>
+            </div>
+            {% endfor%} 
+        </div>
+        {% else %}
+        <div class="error">
+            <h3>No result</h3>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
+
+
+
+
+<!-- 
+<div class="container">
+    <div class="row">
+        <h1>教師聘書</h1>
+    </div>
+    <div class="row">
+         <table class="table table-striped">
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Certificate Name</th>
+                <th>File</th>
+                <th>Blockchain Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for certif in certifs.all %}    
+                <tr> 
+                <th>{{ forloop.counter }}</th>
+                <th>{{certif.name}}</th>
+                <th class="icon"><a href= "{{certif.pdf.url}}"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></th>
+                <th><a href={{certif.web}}>click me</a></th>
+                
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>   
+    </div>
+</div> -->

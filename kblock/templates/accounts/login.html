@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Login</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+
+  <!-- Main Stylesheet File -->
+  <link rel="stylesheet" href="{% static 'theme/css/loginstyle.css' %}">
+  <link rel="stylesheet" href="{% static 'theme/css/loginanim.css' %}">
+
+
+</head>
+
+<body>
+<div id='stars'></div>
+<div id='stars2'></div>
+<div id='stars3'></div>
+
+    <div class="frame">
+
+      <div class="nav">
+        <h2 >Sign in</h2>
+      </div>
+
+      <div>
+            <form class="form-sign" action="" method="post" name="form">
+              {% csrf_token %}
+              <label for="username">Username</label>
+              <input class="form-styling" type="text" name="username" placeholder=""/>
+              <label for="password">Password</label>
+              <input class="form-styling" type="text" name="password" placeholder=""/>
+              <input type="checkbox" id="checkbox"/>
+              <label for="checkbox" ><span class="ui"></span>Keep me signed in</label>
+              <button type="submit" class="button1"> Sign in </button>
+              {% for message in messages %}
+              <p id="messages">{{message}}</p>
+              {% endfor %}
+            </form>
+      </div>
+      
+      <div class="forgot">
+        <a href="#">Forgot your password?</a><br>
+        <p class="message">Don't have an account ?<a href="{% url 'kblock:register' %}"> Register</a></p>
+      </div>
+      
+    </div>
+
+</body>
+</html>

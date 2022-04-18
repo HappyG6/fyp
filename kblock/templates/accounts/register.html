@@ -1,0 +1,48 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Main Stylesheet File -->
+  <link rel="stylesheet" href="{% static 'theme/css/loginstyle.css' %}">
+  <link rel="stylesheet" href="{% static 'theme/css/loginanim.css' %}">
+
+</head>
+
+<body>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+        <div class="frame">
+          <div class="nav">
+              <h2>Register</h2>
+          </div>
+
+          <div>
+            <form class="form-sign" action="" method="post" name="form">
+                {% csrf_token %}
+                <label for="fullname">Full name</label>
+                {{form.username}}
+                <label for="email">Email</label>
+                {{form.email}}
+                <label for="password">Password</label>
+                {{form.password1}}
+                <label for="confirmpassword">Confirm password</label>
+                {{form.password2}}
+                <button type="submit" class="button1"> Register </button>
+              </form>  
+          </div>
+        </div>
+        <div class="errors">{{ form.errors }}</div>    
+    </div>
+</body>
+</html>
