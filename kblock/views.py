@@ -182,7 +182,7 @@ def font_patch():
 def send_iota(json_data):
     api = Iota(
             adapter = 'https://nodes.devnet.iota.org:443',
-            seed = "RVBKLUNYCLFIBNUKUEVKSCSAAUOTRXXHSXFQYOYST9LPZYPGBCJPVLGDLSKFIHXPCNBLZNHUQWXWPEYMM",
+            seed = "ARTRQGUQQUPXNEUEEWDNEUHIVDPKDRCSXOHV9XFUG9DA9EXABVVNTKNXYFWDGPZVNXNAQXQIARPSAPUEN",
             testnet = True,
         )
     data = json_data
