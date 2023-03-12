@@ -166,7 +166,7 @@ def generate_pdf_response(context):
     hash = send_iota(chain_data)
     #bundle = fetch_iota(hash)
 
-    Certificate.objects.filter(name=obj.name).update(web = 'https://explorer.iota.org/legacy-devnet/transaction/%s' % hash)
+    Certificate.objects.filter(name=obj.name).update(web = 'https://explorer.iota.org/legacy-mainnet/transaction/%s' % hash)
 
     if status.err:
         return HttpResponse("PDF文件生成失败")
@@ -200,7 +200,7 @@ def send_iota(json_data):
     print('Sending transfer. . ')
     response = api.send_transfer([tx])
     print('Check your transaction on the Tangle!')
-    print('https://explorer.iota.org/legacy-devnet/transaction/%s' % response['bundle'][0].hash)
+    print('https://explorer.iota.org/legacy-mainnet/transaction/%s' % response['bundle'][0].hash)
     print('Tail transaction hash of the bundle is: %s' % response['bundle'].tail_transaction.hash)
     return  str(response['bundle'][0].hash)    
 
