@@ -1,0 +1,3 @@
+"scripts": {
+  "heroku-postbuild": "npm run build"
+}
